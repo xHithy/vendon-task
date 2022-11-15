@@ -1,14 +1,114 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap");
+.pointer {
+  cursor: pointer;
+}
+
+.shadow {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.p {
+  padding: 0.5rem;
+}
+
 .p-1 {
   padding: 1rem;
+}
+
+.p-2 {
+  padding: 2rem;
+}
+
+.pv-1 {
+  padding: 1rem 0;
+}
+
+.pv-2 {
+  padding: 2rem 0;
+}
+
+.ph-2 {
+  padding: 0 2rem;
+}
+
+.ph-1 {
+  padding: 0 1rem;
+}
+
+.mt-1 {
+  margin-top: 1rem;
+}
+
+.mt-2 {
+  margin-top: 2rem;
+}
+
+.mb-1 {
+  margin-bottom: 1rem;
+}
+
+.mb-2 {
+  margin-bottom: 2rem;
+}
+
+.mv-1 {
+  margin: 1rem 0;
+}
+
+.mv-2 {
+  margin: 2rem 0;
+}
+
+.bg-gray {
+  background-color: rgb(242, 244, 247);
+}
+
+.bg-white {
+  background-color: white;
+}
+
+.bg-accent {
+  background-color: rgb(255, 165, 0);
+}
+
+.tc-white {
+  color: white;
 }
 
 .flex {
   display: flex;
 }
 
+.wrap {
+  flex-wrap: wrap;
+}
+
+.col {
+  flex-direction: column;
+}
+
+.gap {
+  gap: 0.5rem;
+}
+
+.gap-1 {
+  gap: 1rem;
+}
+
+.gap-2 {
+  gap: 2rem;
+}
+
 .jc-c {
   justify-content: center;
+}
+
+.jc-r {
+  justify-content: right;
+}
+
+.s-e {
+  justify-content: space-evenly;
 }
 
 .ai-c {
@@ -17,6 +117,30 @@
 
 .ta-c {
   text-align: center;
+}
+
+.ta-l {
+  text-align: left;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.w-150 {
+  width: 150px;
+}
+
+.w-250 {
+  width: 250px;
+}
+
+.br-10 {
+  border-radius: 10px;
+}
+
+.br-5 {
+  border-radius: 5px;
 }
 
 * {
@@ -57,6 +181,94 @@ b {
 .container {
   width: 100%;
   min-height: 100vh;
+}
+
+select, input {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
+  outline: 0;
+  border: 0;
+  padding: 1rem;
+  background-color: rgb(242, 244, 247);
+}
+select:focus, input:focus {
+  outline: 1px solid rgb(255, 165, 0);
+}
+select::placeholder, input::placeholder {
+  color: rgb(38, 38, 38);
+}
+
+option {
+  padding: 0;
+  margin: 0;
+}
+
+button {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
+  border: 0;
+  outline: 1px solid rgb(255, 165, 0);
+  padding: 1rem;
+  background: transparent;
+  transition: 0.3s;
+  color: rgb(255, 165, 0);
+}
+button:hover {
+  color: white;
+  background-color: rgba(255, 165, 0, 0.82);
+}
+
+.max-w {
+  width: 1200px;
+  padding-left: calc((100% - 1200px) / 2);
+  padding-right: calc((100% - 1200px) / 2);
+  max-width: 1200px;
+  box-sizing: content-box;
+}
+
+.title-line {
+  width: 75px;
+  height: 6px;
+  background: rgb(255, 165, 0);
+}
+
+.quiz-start, .result-container {
+  padding: 4rem 2rem;
+}
+
+.progress-bar {
+  flex: 25;
+  height: 6px;
+}
+
+.quiz-questions__single {
+  font-size: 1.3rem;
+  height: 100px;
+  min-width: 200px;
+  flex: 25;
+  padding: 1rem 2rem;
+}
+
+.finished {
+  background-color: rgb(255, 165, 0);
+}
+
+.unfinished {
+  background-color: rgb(242, 244, 247);
+}
+
+.answer {
+  background-color: rgb(255, 165, 0);
+  color: white;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+@media screen and (max-width: 1200px) {
+  .max-w {
+    width: calc(100% - 2rem);
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,10 +1,8 @@
 // Font - Montserrat
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap');
 
-
 @import "variables";
 @import "bootstrap";
-
 
 * {
     margin:0;
@@ -44,4 +42,90 @@ b {
 .container {
     width:100%;
     min-height:100vh;
+}
+
+select, input {
+    font-family: 'Montserrat', sans-serif;
+    font-size:1.2rem;
+    outline:0;
+    border:0;
+    padding:1rem;
+    background-color:$gray-accent;
+
+    &:focus {
+        outline:1px solid $accent-color;
+    }
+
+    &::placeholder {
+        color:rgb(38, 38, 38);
+    }
+}
+
+option {
+    padding:0;
+    margin:0;
+}
+
+button {
+    font-family: 'Montserrat', sans-serif;
+    font-size:1.2rem;
+    border:0;
+    outline:1px solid $accent-color;
+    padding:1rem;
+    background:transparent;
+    transition:0.3s;
+    color:$accent-color;
+
+    &:hover {
+        color:white;
+        background-color:$accent-hover;
+    }
+}
+
+.max-w {
+    width:$max-width;
+    padding-left:calc((100% - $max-width)/2);
+    padding-right:calc((100% - $max-width)/2);
+    max-width:$max-width;
+    box-sizing:content-box;
+}
+
+.title-line {
+    width:75px;
+    height:6px;
+    background:$accent-color;
+}
+
+.quiz-start, .result-container {
+    padding:4rem 2rem;
+}
+
+.progress-bar {
+    flex:25;
+    height:6px;
+}
+
+.quiz-questions__single {
+    font-size:1.3rem;
+    height:100px;
+    min-width:200px;
+    flex:25;
+    padding:1rem 2rem;
+}
+
+.finished { background-color:$accent-color }
+.unfinished { background-color:$gray-accent }
+
+.answer { 
+    background-color:$accent-color;
+    color:white;
+    box-shadow:rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+@media screen and (max-width: $max-width) {	
+    .max-w {
+        width:calc(100% - 2rem);
+        padding-left:1rem;
+        padding-right:1rem;
+    }
 }

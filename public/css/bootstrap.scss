@@ -1,6 +1,53 @@
-.p-1 {padding:1rem}
+@import "variables";
 
+// MISC PROPERTIES
+.pointer {cursor:pointer}
+.shadow {box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px}
+
+// PADDING PROPERTIES
+.p {padding:0.5rem}
+.p-1 {padding:1rem}
+.p-2 {padding:2rem}
+.pv-1 {padding:1rem 0}
+.pv-2 {padding:2rem 0}
+.ph-2 {padding:0 2rem}
+.ph-1 {padding:0 1rem}
+
+// MARGIN PROPERTIES
+.mt-1 {margin-top:1rem}
+.mt-2 {margin-top:2rem}
+.mb-1 {margin-bottom:1rem}
+.mb-2 {margin-bottom:2rem}
+.mv-1 {margin:1rem 0}
+.mv-2 {margin:2rem 0}
+
+// COLOR PROPERTIES
+.bg-gray {background-color:$gray-accent}
+.bg-white {background-color:white}
+.bg-accent {background-color:$accent-color}
+.tc-white {color:white}
+
+// FLEX PROPERTIES
 .flex {display:flex}
+.wrap {flex-wrap:wrap}
+.col {flex-direction:column}
+.gap {gap:0.5rem}
+.gap-1 {gap:1rem}
+.gap-2 {gap:2rem}
+
+// ALIGN AND JUSTIFT PROPERTIES
 .jc-c {justify-content:center}
+.jc-r {justify-content:right}
+.s-e {justify-content:space-evenly}
 .ai-c {align-items:center}
 .ta-c {text-align:center}
+.ta-l {text-align:left}
+
+// WIDTH & HEIGHT PROPERTIES
+.w-full {width:100%}
+.w-150 {width:150px}
+.w-250 {width:250px}
+
+// BORDER PROPERTIES
+.br-10 {border-radius:10px}
+.br-5 {border-radius:5px}
