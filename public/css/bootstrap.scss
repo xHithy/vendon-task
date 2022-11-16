@@ -8,8 +8,10 @@
 .p {padding:0.5rem}
 .p-1 {padding:1rem}
 .p-2 {padding:2rem}
+.pt-3 {padding-top:3rem}
 .pv-1 {padding:1rem 0}
 .pv-2 {padding:2rem 0}
+.pv-3 {padding:3rem 0}
 .ph-2 {padding:0 2rem}
 .ph-1 {padding:0 1rem}
 
@@ -23,6 +25,7 @@
 
 // COLOR PROPERTIES
 .bg-gray {background-color:$gray-accent}
+.bg-black {background-color:black}
 .bg-white {background-color:white}
 .bg-accent {background-color:$accent-color}
 .tc-white {color:white}

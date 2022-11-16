@@ -40,6 +40,7 @@ b {
 }
 
 .container {
+    background-color:$gray-accent;
     width:100%;
     min-height:100vh;
 }
@@ -93,7 +94,6 @@ button {
 .title-line {
     width:75px;
     height:6px;
-    background:$accent-color;
 }
 
 .quiz-start, .result-container {
@@ -103,23 +103,46 @@ button {
 .progress-bar {
     flex:25;
     height:6px;
+    overflow:hidden;
 }
 
-.quiz-questions__single {
+.quiz-progress {
+    width:50%;
+}
+
+.quiz-question {
+    position:sticky;
+    top:0;
+    z-index:1;
+    background-color:white;
+}
+
+.quiz-answers__single {
+    box-sizing:content-box;
     font-size:1.3rem;
-    height:100px;
-    min-width:200px;
-    flex:25;
-    padding:1rem 2rem;
+    width:40%;
+    padding:1rem;
+    transition:0.3s;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow:rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
+}
+
+.quiz-answers {
+    width:500px;
 }
 
 .finished { background-color:$accent-color }
 .unfinished { background-color:$gray-accent }
 
+
 .answer { 
     background-color:$accent-color;
     color:white;
     box-shadow:rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    transform: translateY(-5px)
 }
 
 @media screen and (max-width: $max-width) {	
@@ -127,5 +150,17 @@ button {
         width:calc(100% - 2rem);
         padding-left:1rem;
         padding-right:1rem;
+    }
+}
+
+@media screen and (max-width: 600px) {	
+    .quiz-answers {
+        width:100%;
+    }
+}
+
+@media screen and (max-width: 400px) {	
+    .quiz-answers__single {
+        width:85%;
     }
 }

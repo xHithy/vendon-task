@@ -19,12 +19,20 @@
   padding: 2rem;
 }
 
+.pt-3 {
+  padding-top: 3rem;
+}
+
 .pv-1 {
   padding: 1rem 0;
 }
 
 .pv-2 {
   padding: 2rem 0;
+}
+
+.pv-3 {
+  padding: 3rem 0;
 }
 
 .ph-2 {
@@ -61,6 +69,10 @@
 
 .bg-gray {
   background-color: rgb(242, 244, 247);
+}
+
+.bg-black {
+  background-color: black;
 }
 
 .bg-white {
@@ -179,6 +191,7 @@ b {
 }
 
 .container {
+  background-color: rgb(242, 244, 247);
   width: 100%;
   min-height: 100vh;
 }
@@ -229,7 +242,6 @@ button:hover {
 .title-line {
   width: 75px;
   height: 6px;
-  background: rgb(255, 165, 0);
 }
 
 .quiz-start, .result-container {
@@ -239,14 +251,34 @@ button:hover {
 .progress-bar {
   flex: 25;
   height: 6px;
+  overflow: hidden;
 }
 
-.quiz-questions__single {
+.quiz-progress {
+  width: 50%;
+}
+
+.quiz-question {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: white;
+}
+
+.quiz-answers__single {
+  box-sizing: content-box;
   font-size: 1.3rem;
-  height: 100px;
-  min-width: 200px;
-  flex: 25;
-  padding: 1rem 2rem;
+  width: 40%;
+  padding: 1rem;
+  transition: 0.3s;
+}
+.quiz-answers__single:hover {
+  transform: translateY(-5px);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.quiz-answers {
+  width: 500px;
 }
 
 .finished {
@@ -261,6 +293,7 @@ button:hover {
   background-color: rgb(255, 165, 0);
   color: white;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  transform: translateY(-5px);
 }
 
 @media screen and (max-width: 1200px) {
@@ -268,6 +301,16 @@ button:hover {
     width: calc(100% - 2rem);
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+}
+@media screen and (max-width: 600px) {
+  .quiz-answers {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 400px) {
+  .quiz-answers__single {
+    width: 85%;
   }
 }
 
