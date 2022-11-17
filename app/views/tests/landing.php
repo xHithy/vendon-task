@@ -6,7 +6,7 @@
                 <p>Please, follow the steps below to continue</p>
             </div>
             <div class="title-line mv-1 bg-accent"></div>
-            <form action="<?=URLROOT . 'tests/startTest'?>" class="flex col ai-c gap-1 w-full" method="POST">
+            <form action="<?=URLROOT . 'tests/test'?>" class="flex col ai-c gap-1 w-full" method="POST">
                 <input class="w-250" placeholder="Enter your name..." name="user" type="text"  minlength="2" required>
                 <select class="w-250" name="selectedTest" required>
                     <option value="" disabled selected hidden>Select a test...</option>

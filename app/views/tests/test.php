@@ -9,16 +9,12 @@
                     <?php } ?>
                 </div>
                 <div class="quiz-progress w-full flex mv-2 br-10">
-                    <div class="progress-bar finished"></div>
-                    <div class="progress-bar finished"></div>
-                    <div class="progress-bar unfinished"></div>
-                    <div class="progress-bar unfinished"></div>
-                    <div class="progress-bar unfinished"></div>
-                    <div class="progress-bar unfinished"></div>
-                    <div class="progress-bar unfinished"></div>
-                    <div class="progress-bar unfinished"></div>
-                    <div class="progress-bar unfinished"></div>
-                    <div class="progress-bar unfinished"></div>
+                    <?php for($i = 0; $i < $data["question_nr"]+1; $i++) { ?>
+                        <div class="progress-bar finished"></div>
+                    <?php }?>
+                    <?php for($i = 1; $i < $data["question_count"] - $data["question_nr"]+1; $i++) { ?>
+                        <div class="progress-bar unfinished"></div>
+                    <?php }?>
                 </div>
                 <div class="next-button flex w-full jc-c mb-2">
                     <button class="pointer w-150" onclick="submitAnswer()">Next question &#8594;</button>

@@ -38,6 +38,7 @@ $(".quiz-answers__single").click(function(event){
 */
 var selectedAnswer = null;
 var questionID = $(".quiz-question").attr("data-id");
+var attemptID = $(".attempt-id").val();
 
 function selectAnswer(answer) {
     selectedAnswer = $(answer).attr("data-id");
@@ -49,7 +50,7 @@ function submitAnswer() {
     } else {
         $.ajax({
             type: "POST",
-            data: {answerID:selectedAnswer, questionID:questionID},
+            data: {answerID:selectedAnswer, questionID:questionID, attemptID:attemptID},
             url: "tests/registerAnswer",
             success: function() {
                 window.location.replace("test");
