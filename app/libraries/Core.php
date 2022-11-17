@@ -6,7 +6,7 @@
     */
 
     class Core {
-        protected $currentController = "Pages";
+        protected $currentController = "Tests";
         protected $currentMethod = "index";
         protected $params = [];
 
@@ -15,11 +15,11 @@
 
             /*
             * Function to remove controller name from link
-            * URL FORMAT with function - https://localhost:8888/quiz
-            * URL FORMAT without function - https://localhost:8888/pages/quiz
+            * URL FORMAT with function - https://localhost:8888/test
+            * URL FORMAT without function - https://localhost:8888/tests/test
             */
-            if (file_exists('../app/views/pages/'.strtolower($url[0]).'.php') && !file_exists('../app/controllers'.ucwords($url[0]).'.php')) {
-                array_unshift($url,"Pages");
+            if (file_exists('../app/views/tests/'.strtolower($url[0]).'.php') && !file_exists('../app/controllers'.ucwords($url[0]).'.php')) {
+                array_unshift($url,"tests");
             }
 
             // Check for first URL index (CONTROLLER)

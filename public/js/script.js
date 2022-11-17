@@ -26,3 +26,41 @@ $(".quiz-answers__single").click(function(event){
     $(".quiz-answers__single").removeClass("answer")
     $(event.target).addClass("answer");
 });
+
+
+
+/*
+* This function is required because a user could use inspect element, and mark every answer as the one he picked
+* If a user does that, then his answer would always be correct
+* This function prevents it, by registering which DOM element the user has selected
+* If user clicks on a different element, previous element gets removed from the variable
+* Thus removing the chance of tinkering with inspect element
+*/
+var selectedAnswer = null;
+var questionID = $(".quiz-question").attr("data-id");
+
+function selectAnswer(answer) {
+    selectedAnswer = $(answer).attr("data-id");
+}
+
+function submitAnswer() {
+    if(selectedAnswer === null) {
+        console.error("No answer was chosen!");
+    } else {
+        $.ajax({
+            type: "POST",
+            data: {answerID:selectedAnswer, questionID:questionID},
+            url: "tests/registerAnswer",
+            success: function() {
+                window.location.replace("test");
+            }
+        })
+    }
+}
+
+
+// This function is called once the user presses "Try another test" in the result view
+function exitTest() {
+    window.location.replace("landing");
+}
+

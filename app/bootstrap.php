@@ -1,13 +1,12 @@
 <?php
-    // CONFIGS
+    // Config
     require_once "../app/config/config.php";
 
-    // LIBRARIES
-    // require_once "libraries/Core.php";
-    // require_once "libraries/Controller.php";
-    // require_once "libraries/Database.php";
+    // Libraries
+    require_once "helpers/progressTracker.php";
+    require_once "helpers/redirect.php";
 
-    // AUTOLOAD CORE LIBRARIES
+    // Autoload core libraries
     spl_autoload_register(function($className) {
         require_once "libraries/" . $className . ".php";
     });
