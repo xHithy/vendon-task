@@ -7,7 +7,7 @@
                 <p class="ta-c">You have answered correctly to <b><?=$data["correct_questions"]?></b> out of <b><?=$data["total_questions"]?></b> questions!</p>
             </div>
             <div class="next-button">
-                <button class="pointer w-250" onclick="exitTest()">Try another test &#8594;</button>
+                <button class="pointer w-250 flex gap jc-c" onclick="exitResults()">Try another test &#8594;</button>
             </div>
         </div>
     </div> 

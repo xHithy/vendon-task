@@ -14,7 +14,7 @@
                         <option value="<?=$test->id?>"><?=$test->test_name?></option>
                     <?php } ?>
                 </select>
-                <button class="w-250 mt-1 pointer" type="submit" name="startQuiz">Start test &#8594;</button>
+                <button class="w-250 flex mt-1 pointer gap jc-c" type="submit" name="startQuiz">Start test <span>&#8594;</span></button>
             </form>
         </div>
     </div> 

@@ -48,11 +48,13 @@ function submitAnswer() {
     if(selectedAnswer === null) {
         console.error("No answer was chosen!");
     } else {
+        // Send a post request to the registerAnswer controller with the users selected answer
         $.ajax({
             type: "POST",
             data: {answerID:selectedAnswer, questionID:questionID, attemptID:attemptID},
             url: "tests/registerAnswer",
             success: function() {
+                // Refresh the test page, with the new data
                 window.location.replace("test");
             }
         })
@@ -61,7 +63,7 @@ function submitAnswer() {
 
 
 // This function is called once the user presses "Try another test" in the result view
-function exitTest() {
+function exitResults() {
     window.location.replace("landing");
 }
 

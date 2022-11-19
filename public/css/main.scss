@@ -46,6 +46,7 @@ b {
 }
 
 select, input {
+    -webkit-appearance:none;
     font-family: 'Montserrat', sans-serif;
     font-size:1.2rem;
     outline:0;
@@ -80,6 +81,7 @@ button {
     &:hover {
         color:white;
         background-color:$accent-hover;
+        gap:1.5rem;
     }
 }
 

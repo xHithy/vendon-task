@@ -17,7 +17,7 @@
                     <?php }?>
                 </div>
                 <div class="next-button flex w-full jc-c mb-2">
-                    <button class="pointer w-150" onclick="submitAnswer()">Next question &#8594;</button>
+                    <button class="pointer w-150 flex gap jc-c" onclick="submitAnswer()">Next question <span>&#8594;</span></button>
                 </div>
             </div>
         </div>
