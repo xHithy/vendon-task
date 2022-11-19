@@ -1,6 +1,6 @@
 <?php require_once APPROOT . '/views/inc/header.php';?>
     <div class="container max-w flex jc-c ai-c pv-2">
-        <div class="quiz-container flex col bg-white shadow mv-2">
+        <div class="quiz-container w-500 flex col bg-white shadow mv-2">
             <div class="quiz-content w-full flex col ai-c gap ph-2">
                 <h1 class="quiz-question w-full ta-c pv-3" data-id="<?=$data["question"]->id?>"><?=$data["question"]->question?></h1>
                 <div class="quiz-answers flex wrap w-full s-e gap-2">
@@ -8,7 +8,7 @@
                         <div class="quiz-answers__single flex ai-c jc-c pointer bg-gray" onclick="selectAnswer(this)" data-id="<?=$option->id?>"><?=$option->answer?></div>
                     <?php } ?>
                 </div>
-                <div class="quiz-progress w-full flex mv-2 br-10">
+                <div class="quiz-progress w-250 flex mv-2 br-10">
                     <?php for($i = 0; $i < $data["question_nr"]+1; $i++) { ?>
                         <div class="progress-bar finished"></div>
                     <?php }?>

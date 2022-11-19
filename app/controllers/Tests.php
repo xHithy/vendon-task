@@ -29,7 +29,7 @@
             // Check if this is a refresh from an active test
             if(isset($_SESSION["test_active"])) {
                 $userID = $_SESSION["user_id"];
-                $activeTest = $_SESSION["test_id"];
+                $activeTest = $this->testModel->getTestIdByAttemptId($_SESSION["attempt_id"]);
                 $totalQuestionCount = $this->testModel->getQuestionCount($activeTest);
                 $questionList = $this->testModel->getQuestions($activeTest);
                 $testStatus = $this->testModel->getUserTestStatus($userID, $activeTest);
@@ -51,18 +51,15 @@
                 ];
                 $this->view("tests/test", $data);
             } else {
-                // Check if the test has been initialized
+                // Check if the test has been initialized, if not initialize one
                 if($_SERVER['REQUEST_METHOD'] == "POST") {
                     $userID = $this->testModel->fetchUserByName($_POST["user"]);
                     $activeTest = $_POST["selectedTest"];
-                    $username = $_POST["user"];
                     $testStatus = $this->testModel->getUserTestStatus($userID, $activeTest);
                     $data = [
                         "test_active" => true,
                         "test_finished" => false,
                         "user_id" => $userID,
-                        "username" => $username,
-                        "test_id" => $activeTest,
                         "attempt_id" => $testStatus["attempt_id"],
                     ];
                     $this->testModel->createTestSession($data);
@@ -70,7 +67,7 @@
                 }
 
                 /*
-                * If there isn't a test active, and there is no post request from the server indicating test setup
+                * If there isn't a test active, and there is no post request from the server indicating a test setup
                 * Then redirect to the landing page to prevent unwanted bugs
                 */
                 if(!fetchTestProgress()) {
@@ -89,9 +86,10 @@
             */
             if(isset($_SESSION["test_finished"])) {
                 if($_SESSION["test_finished"] == true) {
+                    $testID = $this->testModel->getTestIdByAttemptId($_SESSION["attempt_id"]);
                     $username = $this->testModel->fetchUserById($_SESSION["user_id"]);
                     $correctQuestions = $this->testModel->getCorrectAnswerCount($_SESSION["attempt_id"]);
-                    $totalQuestions = $this->testModel->getQuestionCount($_SESSION["test_id"]);
+                    $totalQuestions = $this->testModel->getQuestionCount($testID);
                     $data = [
                         "username" => $username,
                         "correct_questions" => $correctQuestions,

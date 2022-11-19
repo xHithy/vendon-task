@@ -1,5 +1,5 @@
 # Vendon Task
-This is a simple test/quiz website.
+This is a simple test/quiz website. The project is built on an MVC architectural pattern.
 ## Required
 **PHP version**: 7.4.21
 **mySQL version**: 5.7.34

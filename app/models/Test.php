@@ -12,6 +12,31 @@
             return $this->db->resultSet();
         }
 
+
+        /*
+        * This function is created to get rid of an unnecessary session variable
+        * Instead of storing both attempt and test ID I only store attempt ID, because
+        * the attempt database also stores the test ID
+        *
+        * Function returns the test ID
+        */
+        public function getTestIdByAttemptId($attemptID) {
+            $this->db->query("SELECT test_id FROM attempts WHERE id=:attempt_id LIMIT 1");
+            $this->db->bind(":attempt_id", $attemptID);
+            $this->db->execute();
+            return $this->db->single()->test_id;
+        }
+
+
+        /*
+        * This functions provides the ability for a user to leave during a test
+        * and once the user opens the same test again it will resume where the user left off
+        *
+        * Example: User opens Math test. Finishes 3/10 questions. Closes the browser, comes back 10 minutes later
+        * decides to do the quiz again. (If the session has saved, it will automatically open the test again)
+        * Types in username which was used in the users previous visit, then selects math quiz and 
+        * the user will start the quiz on 3/10 questions which are already saved in the database
+        */
         public function getUserTestStatus($userID, $testID) {
             $this->db->query("SELECT finished, id FROM attempts WHERE user_id=:user_id AND test_id=:test_id");
             $this->db->bind(":user_id", $userID);
@@ -23,7 +48,6 @@
                 * If there are previous attempts registered, find the one that isn't finished
                 * If all previous attempts are finished then create a new attempt
                 */ 
-
                 $found = false;
                 $attempts = $this->db->resultSet();
                 foreach($attempts as $attempt) {
@@ -86,10 +110,10 @@
         }
 
         public function fetchUserByName($username) {
+            $filtered_username = htmlspecialchars(trim($username));
             $this->db->query("SELECT id FROM users WHERE username=:username");
-            $this->db->bind(":username", $username);
+            $this->db->bind(":username", $filtered_username);
             $this->db->execute();
-
             /*
             * If the user exists, fetch the users ID
             * If the user doesn't exist, create the user and fetch the last ID
@@ -98,7 +122,7 @@
                 return $this->db->resultSet()[0]->id;
             } else {
                 $this->db->query("INSERT INTO users (username) VALUES (:username)");
-                $this->db->bind(":username", $username);
+                $this->db->bind(":username", $filtered_username);
                 $this->db->execute();
                 return $this->db->lastID();
             }
@@ -122,6 +146,7 @@
             return $this->db->rowCount();
         }
 
+        // Function returns all the questions for the currect active test in an array
         public function getQuestions($testID) {
             $this->db->query("SELECT id, question FROM questions WHERE test_id=:test_id");
             $this->db->bind(":test_id", $testID);
@@ -129,7 +154,7 @@
             return $this->db->resultSet();
         }
 
-        // Function returns all answer options for the passed question
+        // Function returns ALL answer options for the passed question
         public function getAnswers($questionID) {
             $this->db->query("SELECT id, question_id, answer FROM answers WHERE question_id=:question_id");
             $this->db->bind(":question_id", $questionID);
@@ -137,6 +162,11 @@
             return $this->db->resultSet();
         }
 
+
+        /*
+        * After the test has been updated as finished, this function gets called
+        * Function returns the finished attempts correct answer count
+        */
         public function getCorrectAnswerCount($attemptID) {
             $this->db->query("SELECT * FROM answered_questions WHERE attempt_id=:attempt_id AND correct=true");
             $this->db->bind(":attempt_id", $attemptID);
@@ -146,6 +176,7 @@
 
         public function submitAnswer($answerID, $questionID) {
             // Check if the answer user submitted is correct
+            $testID = $this->getTestIdByAttemptId($_SESSION["attempt_id"]);
             $this->db->query("SELECT * FROM answers WHERE id=:answer_id AND question_id=:question_id AND is_correct=true");
             $this->db->bind(":answer_id", $answerID);
             $this->db->bind(":question_id", $questionID);
@@ -160,7 +191,7 @@
             }
 
             $this->db->bind(":user_id", $_SESSION["user_id"]);
-            $this->db->bind(":test_id", $_SESSION["test_id"]);
+            $this->db->bind(":test_id", $testID);
             $this->db->bind(":question_id", $questionID);
             $this->db->bind(":answer_id", $answerID);
             $this->db->bind(":attempt_id", $_SESSION["attempt_id"]);
@@ -169,13 +200,14 @@
 
         public function finishTest() {
             $_SESSION["test_finished"] = true;
+            $testID = $this->getTestIdByAttemptId($_SESSION["attempt_id"]);
             $correctAnswers = $this->getCorrectAnswerCount($_SESSION["attempt_id"]);
             $username = $this->fetchUserById($_SESSION["user_id"]);
-            $totalQuestions = $this->getQuestionCount($_SESSION["test_id"]);
+            $totalQuestions = $this->getQuestionCount($testID);
 
             // Once the test is finished, insert the test result in the database
             $this->db->query("INSERT INTO finished_tests (test_id, username, attempt_id, total_question_count, correct_answers) VALUES (:test_id, :username, :attempt_id, :total_questions, :correct_answers)");
-            $this->db->bind(":test_id", $_SESSION["test_id"]);
+            $this->db->bind(":test_id", $testID);
             $this->db->bind(":username", $username);
             $this->db->bind(":attempt_id", $_SESSION["attempt_id"]);
             $this->db->bind(":total_questions", $totalQuestions);
@@ -198,10 +230,7 @@
             *  This also enables the user to leave during the test, and come back to the test where they left off
             */
 
-            // IMPORTANT - Function will change and sessions will be removed due to scalability and reliability with high traffic!
-
             $_SESSION["test_active"] = $data["test_active"];
-            $_SESSION["test_id"] = $data["test_id"];
             $_SESSION["user_id"] = $data["user_id"];
             $_SESSION["test_finished"] = $data["test_finished"];
             $_SESSION["attempt_id"] = $data["attempt_id"];
@@ -210,7 +239,6 @@
         // This function executes once the test is finished, this allows the user to go back to the starting page
         public function removeTestSession() {
             unset($_SESSION["test_active"]);
-            unset($_SESSION["test_id"]);
             unset($_SESSION["user_id"]);
             unset($_SESSION["test_finished"]);
             unset($_SESSION["attempt_id"]);

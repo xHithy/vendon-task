@@ -38,7 +38,6 @@ $(".quiz-answers__single").click(function(event){
 */
 var selectedAnswer = null;
 var questionID = $(".quiz-question").attr("data-id");
-var attemptID = $(".attempt-id").val();
 
 function selectAnswer(answer) {
     selectedAnswer = $(answer).attr("data-id");
@@ -51,7 +50,7 @@ function submitAnswer() {
         // Send a post request to the registerAnswer controller with the users selected answer
         $.ajax({
             type: "POST",
-            data: {answerID:selectedAnswer, questionID:questionID, attemptID:attemptID},
+            data: {answerID:selectedAnswer, questionID:questionID},
             url: "tests/registerAnswer",
             success: function() {
                 // Refresh the test page, with the new data
