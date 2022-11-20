@@ -14,8 +14,9 @@
     define("APPROOT", dirname(dirname(__FILE__)));
     
     /*
-    * If the sourcecode folder is the root directory, then the URL root should just be the domain;
-    * Example http://localhost:8888/
+    * SOURCE CODE FOLDER'S CONTENT MUST BE IN THE ROOT DIRECTORY
+    * If the sourcecode folders content is the root directory, then the URL root should just be the domain;
+    * Example: http://localhost:8888/
     * ! The slash at the end is important !
     */
     define("URLROOT", "YOUR_ROOT_URL"); 
