@@ -21,3 +21,5 @@
     define("URLROOT", "YOUR_ROOT_URL"); 
 
     define("SITENAME", "Vendon Task");
+
+    // MAKE SURE THE SERVER IS RUNNING PHP7.4.21!
