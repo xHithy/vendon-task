@@ -6,7 +6,7 @@ This is a simple test/quiz website. The project is built on an MVC architectural
 ## Installation
 - Download the source-code. 
 - Place the contents of the folder **in the root directory** of your server.
-- Upload the SQL dump file to your phpMyAdmin
+- Upload the SQL dump file to your database
 - Open the example-config.php
 - Replace the temporary placeholders (example: **YOUR_DATABASE_HOST**, **YOUR_DATABASE_USERNAME**) with your database credentials and your websites URL to this folder
 - After changing the placeholders, rename the **example-config.php** file to **config.php**
